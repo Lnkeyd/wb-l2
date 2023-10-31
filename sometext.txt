@@ -1,7 +1,0 @@
-Hello this is me and my project to get along with git branches!
-
-Please don't judge me so hard when I fail, I'm only beginner on this.
-
-Just enjoy!
-
-Happy coding!

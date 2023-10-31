@@ -1,0 +1,28 @@
+.menuBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 12px;
+  background-color: rgb(69, 68, 68);
+  border-radius: 12px;
+
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.label {
+  color: #fff;
+}
+
+.select {
+  width: 272px;
+  margin-top: 12px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.button {
+  -webkit-tap-highlight-color: transparent;
+}

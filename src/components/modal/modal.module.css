@@ -1,0 +1,30 @@
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, .8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    color: #000;
+    width: 100%;
+    max-width: 550px;
+    background-color: #fff;
+    padding: 26px 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.buttons {
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    column-gap: 28px;
+}

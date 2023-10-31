@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 7px;
+  border-radius: 12px;
+
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.container:not(:first-child) {
+  margin-top: 20px;
+}
+
+.check {
+  cursor: pointer;
+}
+
+.trash {
+  cursor: pointer;
+}
+
+.trash:hover> svg path {
+  fill: rgb(255, 155, 155);
+  transition: all 0.3s ease;
+}
+
+.date {
+  margin-left: auto;
+  margin-right: 10px;
+  font-size: 12px;
+  max-width: 64px;
+  text-align: right;
+}
+
+.mainText {
+  text-align: left;
+  padding-right: 10px;
+  margin-left: 12px;
+}
