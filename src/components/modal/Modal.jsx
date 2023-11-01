@@ -1,14 +1,14 @@
 import styles from "./modal.module.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { checkTaskValid } from "../../utils/checkTaskValid";
 
-const Modal = ({ setModal, setTasks, tasks }) => {
+const Modal = ({ setModal, setTasks, tasks, modal }) => {
   const [todo, setTodo] = useState({});
+  const [titleErr, setTitleErr] = useState("");
+  const [deadlineErr, setDeadlineErr] = useState("");
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    // TODO: Тут должна быть проверка, ввёл ли пользователь значения тайтла и дедлайна
-
+  function createTodo(todo) {
     // Добавляем timestamp создания
     todo.createdAt = Date.now();
     todo.checked = false;
@@ -22,15 +22,48 @@ const Modal = ({ setModal, setTasks, tasks }) => {
       localStorage.setItem("todo-arr", JSON.stringify([todo]));
     }
     setTasks([...tasks, todo]);
-    setModal(false);
+  }
+
+  function updateTodo(id, todo) {
+    const todoArr = JSON.parse(localStorage.getItem("todo-arr"));
+    const index = todoArr.findIndex((item) => item.createdAt === id);
+    todoArr[index] = todo;
+    console.log(todoArr)
+    console.log(todo);
+    localStorage.setItem("todo-arr", JSON.stringify(todoArr));
+    setTasks(todoArr);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    // Проверка, ввёл ли пользователь значения тайтла и дедлайна
+    const err = checkTaskValid(todo);
+    // Если не прошли проверку
+    if (!err.pass) {
+      setTitleErr(err.title);
+      setDeadlineErr(err.deadline);
+      return;
+    } else {
+      // Если всё хорошо
+      modal.mode === "create" ? createTodo(todo) : updateTodo(modal.id, todo);
+      // Выключаем/обнуляем модалку
+      setModal({
+        isShow: false,
+        id: null,
+        mode: "",
+      });
+    }
   }
 
   return (
     <div className={styles.modal}>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <h2>Добавить задачу</h2>
+        <h2>
+          {modal.mode === "create" ? "Добавить задачу" : "Редактировать задачу"}
+        </h2>
         <label className={styles.label}>
           Название
+          {titleErr && <span className={styles.error}>{titleErr}</span>}
           <input
             className={styles.input}
             id="input-title"
@@ -51,6 +84,7 @@ const Modal = ({ setModal, setTasks, tasks }) => {
         </label>
         <label className={styles.label}>
           Срок выполнения:
+          {deadlineErr && <span className={styles.error}>{deadlineErr}</span>}
           <input
             className={styles.input}
             type="datetime-local"
@@ -80,6 +114,7 @@ Modal.propTypes = {
   setModal: PropTypes.func.isRequired,
   setTasks: PropTypes.func.isRequired,
   tasks: PropTypes.array.isRequired,
+  modal: PropTypes.object,
 };
 
 export default Modal;

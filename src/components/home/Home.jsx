@@ -9,18 +9,18 @@ const Home = () => {
   const [tasks, setTasks] = useState(!!todoArr === true ? todoArr : []);
 
   // Если есть задачи из LS, то отображаем их
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState({
+    isShow: false,
+    id: null,
+    mode: "",
+  });
 
   return (
     <>
-      {modal && <Modal setModal={setModal} setTasks={setTasks} tasks={tasks} />}
+      {modal.isShow && <Modal setModal={setModal} setTasks={setTasks} tasks={tasks} modal={modal} />}
       <div className={styles.container}>
-        <MenuBar
-          setModal={setModal}
-          setTasks={setTasks}
-          tasks={tasks}
-        />
-        <Tasks tasks={tasks} setTasks={setTasks} />
+        <MenuBar setModal={setModal} setTasks={setTasks} tasks={tasks}/>
+        <Tasks tasks={tasks} setTasks={setTasks} setModal={setModal}/>
       </div>
     </>
   );

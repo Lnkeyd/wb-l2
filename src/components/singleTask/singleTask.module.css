@@ -10,6 +10,10 @@
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
 }
 
+.container:hover {
+  background-color: rgb(245, 245, 245);
+}
+
 .container:not(:first-child) {
   margin-top: 20px;
 }
@@ -23,7 +27,7 @@
 }
 
 .trash:hover> svg path {
-  fill: rgb(255, 155, 155);
+  fill: var(--red);
   transition: all 0.3s ease;
 }
 
@@ -36,6 +40,7 @@
 }
 
 .mainText {
+  cursor: pointer;
   text-align: left;
   padding-right: 10px;
   margin-left: 12px;

@@ -6,7 +6,7 @@ import Trash from "../svg/trash";
 import { convertDateTime } from "../../utils/convertDate";
 import { useState } from "react";
 
-const SingleTask = ({ item, setTasks }) => {
+const SingleTask = ({ item, setTasks, setModal }) => {
   const [checked, setChecked] = useState(item.checked);
 
   // Изменяем чекбокс в UI и сеттим в LS
@@ -36,13 +36,20 @@ const SingleTask = ({ item, setTasks }) => {
     setTasks(filtered);
   }
 
+  function handleUpdate() {
+    setModal({
+      isShow: true,
+      id: item.createdAt,
+      mode: "update",
+    });
+  }
+
   return (
     <li className={styles.container}>
       <div className={styles.check} onClick={handleCheck}>
-        {/* {item?.checked ? <Checked /> : <Unchecked />} */}
         {checked ? <Checked /> : <Unchecked />}
       </div>
-      <div className={styles.mainText}>
+      <div className={styles.mainText} onClick={handleUpdate}>
         <h3>{item.title}</h3>
         {item.description && <p>{item.description}</p>}
       </div>
@@ -59,6 +66,7 @@ const SingleTask = ({ item, setTasks }) => {
 SingleTask.propTypes = {
   item: PropTypes.object.isRequired,
   setTasks: PropTypes.func.isRequired,
+  setModal: PropTypes.func.isRequired,
 };
 
 export default SingleTask;

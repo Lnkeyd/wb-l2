@@ -10,6 +10,17 @@
     align-items: center;
 }
 
+.label {
+    position: relative;
+}
+
+.error {
+    position: absolute;
+    top: 0;
+    right: 6px;
+    color: var(--red);
+}
+
 .form {
     color: #000;
     width: 100%;

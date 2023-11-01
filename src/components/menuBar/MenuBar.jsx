@@ -27,7 +27,9 @@ const MenuBar = ({ setModal, setTasks, tasks }) => {
           }}
           className={styles.select}
           name="sort-creation"
-          style={{ backgroundColor: activeSelect === "sort-creation" ? "#cedaff" : "" }}
+          style={{
+            backgroundColor: activeSelect === "sort-creation" ? "#cedaff" : "",
+          }}
         >
           <option value="new-first">Дате создания (сначала новые)</option>
           <option value="old-first">Дате создания (сначала старые)</option>
@@ -41,13 +43,24 @@ const MenuBar = ({ setModal, setTasks, tasks }) => {
           }}
           className={styles.select}
           name="sort-deadline"
-          style={{ backgroundColor: activeSelect === "sort-deadline" ? "#cedaff" : "" }}
+          style={{
+            backgroundColor: activeSelect === "sort-deadline" ? "#cedaff" : "",
+          }}
         >
           <option value="new-first">Сроку выполнения (срок ближе)</option>
           <option value="old-first">Сроку выполнения (срок дальше)</option>
         </select>
       </label>
-      <button className={styles.button} onClick={() => setModal(true)}>
+      <button
+        className={styles.button}
+        onClick={() =>
+          setModal({
+            isShow: true,
+            id: null,
+            mode: "create",
+          })
+        }
+      >
         + Создать запись
       </button>
     </div>
