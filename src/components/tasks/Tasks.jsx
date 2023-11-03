@@ -3,7 +3,7 @@ import styles from "./tasks.module.css";
 import SingleTask from "../singleTask/SingleTask";
 
 const Tasks = ({ tasks, setTasks, setModal }) => {
-  console.log('Rendered!')
+
   return (
     <div className={styles.container}>
       {tasks.map((item, index) => (

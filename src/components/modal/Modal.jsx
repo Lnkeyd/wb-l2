@@ -2,13 +2,15 @@ import styles from "./modal.module.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { checkTaskValid } from "../../utils/checkTaskValid";
+import { regSubscription } from "../../utils/resSubscription";
+import { removeNotification } from "../../utils/removeNotification";
 
 const Modal = ({ setModal, setTasks, tasks, modal }) => {
   const [todo, setTodo] = useState({});
   const [titleErr, setTitleErr] = useState("");
   const [deadlineErr, setDeadlineErr] = useState("");
 
-  function createTodo(todo) {
+  async function createTodo(todo) {
     // Добавляем timestamp создания
     todo.createdAt = Date.now();
     todo.checked = false;
@@ -21,20 +23,27 @@ const Modal = ({ setModal, setTasks, tasks, modal }) => {
       //   Если задача - первая и до неё никаких задач не создавалось
       localStorage.setItem("todo-arr", JSON.stringify([todo]));
     }
+
+    await removeNotification(todo.createdAt);
+    await regSubscription(todo);
     setTasks([...tasks, todo]);
   }
 
-  function updateTodo(id, todo) {
+  async function updateTodo(id, todo) {
+    
     const todoArr = JSON.parse(localStorage.getItem("todo-arr"));
     const index = todoArr.findIndex((item) => item.createdAt === id);
-    todoArr[index] = todo;
-    console.log(todoArr)
-    console.log(todo);
+    todoArr[index] = { ...todo, createdAt: id };
+
+    console.log(todoArr[index])
     localStorage.setItem("todo-arr", JSON.stringify(todoArr));
     setTasks(todoArr);
+
+    await removeNotification(id);
+    todoArr[index].checked === false ? await regSubscription(todoArr[index]) : ''
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     // Проверка, ввёл ли пользователь значения тайтла и дедлайна
     const err = checkTaskValid(todo);
@@ -45,7 +54,10 @@ const Modal = ({ setModal, setTasks, tasks, modal }) => {
       return;
     } else {
       // Если всё хорошо
-      modal.mode === "create" ? createTodo(todo) : updateTodo(modal.id, todo);
+      (await modal.mode) === "create"
+        ? createTodo(todo)
+        : updateTodo(modal.id, todo);
+
       // Выключаем/обнуляем модалку
       setModal({
         isShow: false,

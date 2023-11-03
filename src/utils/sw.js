@@ -1,1 +1,0 @@
-console.log('This is message from the service worker!')

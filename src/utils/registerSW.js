@@ -9,7 +9,8 @@ export const checkPermission = () => {
 }
 
 export const registerSW = async () => {
-    const registration = await navigator.serviceWorker.register('/src/utils/sw.js')
+    const registration = await navigator.serviceWorker.register('/sw.js')
+    
     return registration
 }
 
@@ -18,7 +19,5 @@ export const registerNotificationPermission = async () => {
 
     if (permission !== "granted") {
         throw new Error("Пользователь отключил уведомления")
-    } else {
-        // new Notification("Hello World!!!!!!!!!!!!", {silent: true, body: 'lolololol'})
     }
 }

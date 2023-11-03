@@ -5,12 +5,14 @@ import Unchecked from "../svg/unchecked";
 import Trash from "../svg/trash";
 import { convertDateTime } from "../../utils/convertDate";
 import { useState } from "react";
+import { removeNotification } from "../../utils/removeNotification";
+import { regSubscription } from "../../utils/resSubscription";
 
 const SingleTask = ({ item, setTasks, setModal }) => {
   const [checked, setChecked] = useState(item.checked);
 
   // Изменяем чекбокс в UI и сеттим в LS
-  function handleCheck(e) {
+  async function handleCheck(e) {
     e.preventDefault();
 
     // Находить будем по createdAt, т.к.
@@ -22,10 +24,18 @@ const SingleTask = ({ item, setTasks, setModal }) => {
     arr[todoIndex].checked = !checked;
     setChecked(!checked);
     localStorage.setItem("todo-arr", JSON.stringify(arr));
+
+    if (arr[todoIndex].checked) {
+      const res = await removeNotification(arr[todoIndex].createdAt)
+      console.log(res)
+    }
+    else {
+      await regSubscription(item);
+    }
   }
 
   //   При удалении фильтруем изначальный массив в LS
-  function handleDelete(e) {
+  async function handleDelete(e) {
     e.preventDefault();
 
     const arr = JSON.parse(localStorage.getItem("todo-arr"));
@@ -34,6 +44,9 @@ const SingleTask = ({ item, setTasks, setModal }) => {
     );
     localStorage.setItem("todo-arr", JSON.stringify(filtered));
     setTasks(filtered);
+
+    const res = await removeNotification(item.createdAt)
+    console.log(res)
   }
 
   function handleUpdate() {
