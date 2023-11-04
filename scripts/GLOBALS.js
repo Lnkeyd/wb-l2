@@ -1,0 +1,2 @@
+MAX_NUM = 100;
+NUM_OF_ATTEMPTS = 0;
