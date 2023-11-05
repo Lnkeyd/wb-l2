@@ -3,3 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.meme-header {
+  padding: 20px;
+}
+
+.meme-content {
+  margin-top: 20px;
+}

@@ -5,5 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <h1>Генератор мемов</h1>
+
+    <div class="meme-header">
+      <label for="file"> Выберите изображение </label>
+      <input type="file" name="file" id="image-file-input" />
+
+      <div class="meme-top-text">
+        <label for="top-text"> Верхний текст </label>
+
+        <input type="text" name="top-text" id="image-top-text" />
+
+        <label for="top-offset">Отступ сверху (px)</label>
+        <input type="number" name="top-offset" class="top-offset" />
+        <label for="left-offset">Отступ слева (px)</label>
+        <input type="number" name="left-offset" class="left-offset" />
+
+        <label for="top-font-family"> Стиль шрифта </label>
+        <select name="top-font-family" id=""></select>
+        <label for="top-font-weight"> Жирность шрифта </label>
+        <input type="range" name="top-font-weight" min="100" max="900" step="100">
+        <label for="top-font-size"> Размер шрифта </label>
+        <input type="range" name="top-font-size" min="8" max="72" step="1">
+      </div>
+
+      <div class="meme-bottom-text">
+        <label for="bottom-text"> Нижний текст </label>
+
+        <input type="text" name="bottom-text" id="image-bottom-text" />
+
+        <label for="top-offset">Отступ сверху (px)</label>
+        <input type="number" class="top-offset" name="top-offset" />
+        <label for="left-offset">Отступ слева (px)</label>
+        <input type="number" class="left-offset" name="left-offset" />
+
+        <label for="bottom-font-family"> Стиль шрифта </label>
+        <select name="bottom-font-family" id=""></select>
+        <label for="bottom-font-weight"> Жирность шрифта </label>
+        <input type="range" name="bottom-font-weight" min="100" max="900" step="100">
+        <label for="bottom-font-size"> Размер шрифта </label>
+        <input type="range" name="top-font-size" min="8" max="72" step="1">
+      </div>
+    </div>
+
+    <div class="meme-content">
+      <canvas id="meme"></canvas>
+    </div>
+  </body>
 </html>
