@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding-bottom: 24px;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px;
+}
+
+.meme-header {
+  padding: 12px;
+  background-color: rgb(228, 228, 228);
+  border-radius: 12px;
+  max-width: 680px;
+  height: fit-content;
+
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.meme-file {
+  margin-bottom: 20px;
+}
+
+.meme-style {
+  max-width: 645px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  row-gap: 8px;
+  background-color: rgb(216, 216, 216);
+  padding: 12px 20px;
+  border-radius: 12px;
+
+  margin-top: 10px;
+  margin-bottom: 16px;
+}
+
+.header-text {
+  font-weight: 600;
+}
+
+.meme-content {
+  margin-top: 20px;
+}
+
+.meme-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#canvas {
+  width: 100%;
+}
+
+#btn-download {
+  display: block;
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 12px;
+  background-color: transparent;
+  padding: 20px;
+  margin: 0 auto;
+  cursor: pointer;
+}

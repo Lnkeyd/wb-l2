@@ -1,5 +1,3 @@
-const FONT_DEFAULT = 'Times New Roman'
-
 const FONTS = [
     'Arial',
     'Arial Black',
