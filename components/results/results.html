@@ -1,6 +1,16 @@
-<div class="results">
-    <h3>Диапазон для следующей игры:</h3>
-    <input type="range" min="1" max="1000000" step="1">
-    <p>Количество попыток: <span>3</span></p>
-    <button>Начать новую игру</button>
+<h2>Да, это было число ${NUM}, Вы восхитительны!</h2>
+<h3>Диапазон для следующей игры:</h3>
+<div id="range-container">
+<input
+  id="new-range"
+  type="range"
+  min="0"
+  max="1000"
+  step="10"
+  value="${MAX_NUM}"
+/>
+<span id="new-range-value">${MAX_NUM}</span>
 </div>
+<div>Количество попыток: ${ATTEMPT_COUNT}</div>
+<button id="new-game">Начать новую игру</button>
+<div id="new-warning"></div>
