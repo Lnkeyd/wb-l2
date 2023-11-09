@@ -6,6 +6,51 @@
     <title>Калькулятор калорий</title>
 </head>
 <body>
-    
+    <h1>Калькулятор калорий</h1>
+
+    <div class="target container">
+        <div class="target-title container__title">
+            Целевые показатели
+        </div>
+        <div class="target-value container__value">600 ккал</div>
+        <button class="target-change container__button">Изменить</button>
+    </div>
+    <div class="container">
+        <div class="current-title container__title">
+            Съедено калорий
+        </div>
+        <div class="current-value container__value">
+
+        </div>
+        <button class="current-add-product container__button">Добавить продукт</button>
+    </div>
+
+    <div id="diagram">
+        <canvas></canvas>
+    </div>
+
+    <div class="products">
+        <div class="products-header">
+            <h2>Продукты</h2>
+            <button class="delete-all">Удалить все</button>
+        </div>
+        <div class="products-sort">
+            <span class="products-sort__title">
+                Сортировать по калорийности
+            </span>
+            <img src="" alt="sort arrow">
+        </div>
+        <div class="products-filter">
+            <div class="products-filter__title">Фильтр по названию:</div>
+            <input class="products-filter__input" type="text">
+        </div>
+        <div class="products-items">
+            <div class="products-items-item">
+                <div class="products-items-item__title">IMA</div>
+                <div class="products-items-item__value">300ccal</div>
+                <button class="products-items-item__delete-button">Удалить</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
