@@ -9,49 +9,79 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./src/styles/global.css">
+    <link rel="stylesheet" href="./src/styles/global.css" />
+
+    <script src="./src/store/globals.js" defer></script>
+    <script src="./src/store/store.js" defer type="module"></script>
+    <script src="./src/store/actions.js" defer type="module"></script>
+    <script src="./src/scripts/changeTarget.js" defer type="module"></script>
+    <script src="./src/scripts/addProduct.js" defer type="module"></script>
+    <script src="./src/scripts/transformProducts.js" defer type="module"></script>
+    <script src="./src/scripts/removeProduct.js" defer type="module"></script>
     <title>Калькулятор калорий</title>
   </head>
   <body>
-    <h1>Калькулятор калорий</h1>
+    <main>
+      <h1>Калькулятор калорий</h1>
 
-    <div class="target container">
-      <div class="target-title container__title">Целевые показатели</div>
-      <div class="target-value container__value">600 ккал</div>
-      <button class="target-change container__button">Изменить</button>
-    </div>
-    <div class="container">
-      <div class="current-title container__title">Съедено калорий</div>
-      <div class="current-value container__value"></div>
-      <button class="current-add-product container__button">
-        Добавить продукт
-      </button>
-    </div>
+      <div class="target container">
+        <div class="target-title container__title">Целевые показатели:</div>
+        <div class="target-value container__value">0 кал</div>
+        <button class="target-change container__button">Изменить</button>
+      </div>
+      <div class="container">
+        <div class="current-title container__title">Съедено калорий:</div>
+        <div class="current-value container__value">0</div>
+        <button class="current-add-product container__button">
+          Добавить продукт
+        </button>
+      </div>
 
-    <div id="diagram">
-      <canvas></canvas>
-    </div>
+      <div id="diagram">
+        <canvas></canvas>
+      </div>
 
-    <div class="products">
-      <div class="products-header">
-        <h2>Продукты</h2>
-        <button class="delete-all">Удалить все</button>
-      </div>
-      <div class="products-sort">
-        <span class="products-sort__title"> Сортировать по калорийности </span>
-        <img src="" alt="sort arrow" />
-      </div>
-      <div class="products-filter">
-        <div class="products-filter__title">Фильтр по названию:</div>
-        <input class="products-filter__input" type="text" />
-      </div>
-      <div class="products-items">
-        <div class="products-items-item">
-          <div class="products-items-item__title">IMA</div>
-          <div class="products-items-item__value">300ccal</div>
-          <button class="products-items-item__delete-button">Удалить</button>
+      <div class="products">
+        <div class="products-header container">
+          <h2 class="products-header__title">Продукты</h2>
+          <button class="products-header__button">Удалить все</button>
+        </div>
+        <div class="products-sort container">
+          <span class="products-sort__title">
+            Сортировать по калорийности
+          </span>
+          <select name="" id="sort">
+            <option value="" disabled selected>Сортировать по</option>
+            <option value="increase">Возрастанию</option>
+            <option value="decrease">Убыванию</option>
+            <option value="reset">Сброс</option>
+          </select>
+        </div>
+        <div class="products-filter container">
+          <div class="products-filter__title">Фильтр по названию:</div>
+          <input class="products-filter__input" type="text" />
+        </div>
+        <div class="products-items">
         </div>
       </div>
+    </main>
+    <div class="modal">
+      <form class="modal-form">
+        <label>
+          Название:
+          <span class="modal-title-error"></span>
+          <input type="text" class="modal-input-title" />
+        </label>
+        <label>
+          Калорийность (кал):
+          <span class="modal-cal-error"></span>
+          <input type="text" class="modal-input-cal" />
+        </label>
+        <div class="modal-buttons">
+          <button type="submit" class="modal-submit">Добавить</button>
+          <button type="submit" class="modal-cancel">Отмена</button>
+        </div>
+      </form>
     </div>
   </body>
 </html>

@@ -1,0 +1,16 @@
+.products-header {
+    justify-content: space-between;
+}
+
+.products-items-item__title {
+    font-weight: 600;
+}
+
+.products-items-item__delete-button {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+#sort {
+    border-radius: 4px;
+}
