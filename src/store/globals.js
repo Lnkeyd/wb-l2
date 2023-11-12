@@ -5,8 +5,12 @@ let INITIAL_STATE = {
 };
 
 let FILTER = "";
+// SORTED используется вместо основного массива для манипуляции 
+// фильтрами и сортировками и отображении этих выходных данных
 let SORTED = [];
 let SORT = "";
+
+// Берём стейт из LS или если там ничего нет, то из INITIAL_STATE
 let STORE = getFromLS() || JSON.parse(JSON.stringify(INITIAL_STATE));
 updateUI(STORE.target, STORE.current);
 
@@ -34,6 +38,9 @@ function updateCurrent(value) {
   document.querySelector(".current-value").textContent = `${value} кал`;
 }
 
+// Обновить график
+// Справочный ресурс по теме:
+// https://www.youtube.com/watch?v=A5ERsm08cf8&ab_channel=BananaCoding
 function updateCanvas() {
   const canvas = document.querySelector("#canvas");
   const container = document.querySelector(".canvas-container");
@@ -50,16 +57,16 @@ function updateCanvas() {
 
   const data = JSON.parse(JSON.stringify(STORE.products));
   if (!data.length) return;
-  
+
   const calories = data.map((item) => item.calorie);
   const max = Math.max(...calories);
   // Для скейлинга данных по максимальному значению
   // (чтобы значения выше canvas height влазили в canvas)
   const k = (heigth / max) * 0.9;
 
-  console.log(k);
-
   const startValue = heigth - k * data[0].calorie;
+  // Скейлинг данных по оси X
+  // В зависимости от длины данных
   const distance = width / data.length;
 
   const startPoint = 0;
@@ -72,6 +79,8 @@ function updateCanvas() {
     const text = `${item.name}: ${item.calorie} кал`;
     ctx.font = "600 16px Montserrat";
 
+    // Для первого продукта делаем немного другую точку
+    // И положение текста
     if (index === 0) {
       ctx.fillRect(0, heigth - k * item.calorie - 5, 10, 10);
       ctx.fillText(text, 0, heigth - k * item.calorie + 25);
@@ -132,28 +141,20 @@ function renderProducts() {
             <button class="products-items-item__delete-button">Удалить</button>
         `;
 
-    // const button = document.createElement("button");
-    // button.classList.add("products-items-item__delete-button");
-
-    // button.addEventListener("click", (e) => {
-    //   e.preventDefault();
-    //   const id = item.parentElement.id;
-    //   removeProduct(id);
-    // });
-
     productContainer.append(product);
   });
 }
 
+// Предупреждение при превышении дневного лимита
 function checkAlert() {
   if (STORE.current > STORE.target)
     alert('Вы превысили дневной лимит калорий!')
 }
 
+// Начальный апдейт при первом запуске приложения
 function updateUI(target, current) {
   updateTarget(target);
   updateCurrent(current);
-  // updateCanvas(products)
   renderProducts();
   updateCanvas();
 }

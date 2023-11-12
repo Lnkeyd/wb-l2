@@ -1,3 +1,4 @@
+// Генерируем уникальный id
 export const uuid = () => {
     let id = ''
     const alphabet = 'abcdefghijklmnopqrstuvwxyz'

@@ -65,6 +65,4 @@ submitForm.addEventListener("submit", (e) => {
   
   inputTitle.value = "";
   inputCal.value = "";
-
-  console.log(STORE);
 });

@@ -25,8 +25,6 @@ button.addEventListener("click", (e) => {
   else {
     value.innerHTML = `${newTarget} кал`;
     modifyGoal(Number(newTarget));
-
-    console.log(STORE);
   }
 
   opened = !opened;
