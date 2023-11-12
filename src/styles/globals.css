@@ -6,12 +6,33 @@
 
 body {
   font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  row-gap: 22px;
 }
 
 .container-cell {
-  max-width: 75px;
+  width: 75px;
   height: 75px;
   border: 2px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+button {
+    max-width: 200px;
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 12px;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .container {
