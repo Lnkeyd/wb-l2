@@ -23,7 +23,6 @@ const reducer = (state = STORE, action) => {
     case "removeProduct":
       // находим нужный элемент
       const item = arr.find((item) => item.id === action.payload);
-      console.log(item)
       if (!item) return console.error("Нет такого продукта");
 
       current = state.current - item.calorie;

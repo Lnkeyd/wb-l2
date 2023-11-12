@@ -34,7 +34,64 @@ function updateCurrent(value) {
   document.querySelector(".current-value").textContent = `${value} кал`;
 }
 
-function updateCanvas() {}
+function updateCanvas() {
+  const canvas = document.querySelector("#canvas");
+  const container = document.querySelector(".canvas-container");
+  canvas.style.width = "100%";
+  canvas.style.height = "100%";
+
+  const width = (canvas.width = container.offsetWidth);
+  const heigth = (canvas.height = container.offsetHeight);
+
+  const ctx = canvas.getContext("2d");
+
+  // Очищаем canvas перед каждым вызовом
+  ctx.clearRect(0, 0, width, heigth);
+
+  const data = JSON.parse(JSON.stringify(STORE.products));
+  if (!data.length) return;
+  
+  const calories = data.map((item) => item.calorie);
+  const max = Math.max(...calories);
+  // Для скейлинга данных по максимальному значению
+  // (чтобы значения выше canvas height влазили в canvas)
+  const k = (heigth / max) * 0.9;
+
+  console.log(k);
+
+  const startValue = heigth - k * data[0].calorie;
+  const distance = width / data.length;
+
+  const startPoint = 0;
+
+  ctx.beginPath();
+
+  ctx.moveTo(startPoint, startValue);
+
+  data.forEach((item, index) => {
+    const text = `${item.name}: ${item.calorie} кал`;
+    ctx.font = "600 16px Montserrat";
+
+    if (index === 0) {
+      ctx.fillRect(0, heigth - k * item.calorie - 5, 10, 10);
+      ctx.fillText(text, 0, heigth - k * item.calorie + 25);
+      return;
+    }
+
+    const newDistance = startPoint + distance * (index + 1);
+    // Соединяем линии и рисуем точку
+    ctx.lineTo(newDistance, heigth - k * item.calorie);
+    ctx.fillRect(newDistance - 5.5, heigth - k * item.calorie - 5, 10, 10);
+
+    ctx.fillText(
+      text,
+      newDistance - text.length * 9.5,
+      heigth - k * item.calorie - 10
+    );
+  });
+  ctx.stroke();
+  ctx.closePath();
+}
 
 // Рендер продуктов
 function renderProducts() {
@@ -88,9 +145,15 @@ function renderProducts() {
   });
 }
 
+function checkAlert() {
+  if (STORE.current > STORE.target)
+    alert('Вы превысили дневной лимит калорий!')
+}
+
 function updateUI(target, current) {
   updateTarget(target);
   updateCurrent(current);
   // updateCanvas(products)
   renderProducts();
+  updateCanvas();
 }

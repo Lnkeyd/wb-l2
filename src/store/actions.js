@@ -7,15 +7,17 @@ export const addProduct = (obj) => {
   dispatch("addProduct", product);
   renderProducts()
   listenToDelete()
+  updateCanvas()
+  setTimeout(() => checkAlert(), 400)
 };
 
 export const removeProduct = (id) => {
   dispatch("removeProduct", id);
-  console.log("HERE")
   // TODO: тут и везде сделать апдейт UI
   // В том числе и графика
   renderProducts()
   listenToDelete()
+  updateCanvas()
 };
 
 export const removeAllProducts = () => {
@@ -26,4 +28,5 @@ export const removeAllProducts = () => {
 
 export const modifyGoal = (target) => {
   dispatch("modifyGoal", target);
+  checkAlert()
 };

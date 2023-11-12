@@ -1,5 +1,6 @@
 @import url('./products.css');
 @import url('./modal.css');
+@import url('./canvas.css');
 
 * {
     margin: 0;
@@ -13,6 +14,10 @@ body {
 
 main {
     padding: 32px;
+}
+
+main > h1 {
+    margin-bottom: 32px;
 }
 
 .container {
